@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Yenkumu-Lutu | Triptyque Interactif</title>
+    <!-- Chargement de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chargement de la police d'écriture Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            overflow: hidden; 
+            background-color: #1c1917; 
+            touch-action: none; 
+        }
+        
+        /* Conteneur optimisé pour être harmonieux sur Desktop et Mobile */
+        .panel-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            background-color: white;
+            height: 82vh;
+            width: min(92vw, calc(82vh * (99 / 210)));
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+        
+        @media (max-width: 640px) {
+            .panel-wrapper { 
+                width: 94vw; 
+                height: 85vh; 
+                border-radius: 1rem;
+            }
+        }
+        
+        .dot {
+            transition: all 0.3s ease;
+        }
+        .dot.active { 
+            background-color: #84cc16; 
+            transform: scale(1.4);
+            box-shadow: 0 0 10px rgba(132, 204, 22, 0.5);
+        }
+
+        /* Animation Pulse pour le bouton dynamique */
+        @keyframes custom-pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(132, 204, 22, 0.4); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(132, 204, 22, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(132, 204, 22, 0); }
+        }
+        .btn-dynamic {
+            animation: custom-pulse 2s infinite;
+        }
+
+        .animate-fade {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-lime-200">
+
+    <!-- Conteneur principal du Carousel -->
+    <div id="slider" class="flex h-screen w-[600vw] transition-transform duration-500 ease-out will-change-transform">
+        
+        <!-- PANNEAU 1 : COUVERTURE -->
+        <div class="w-screen h-screen flex items-center justify-center p-2 sm:p-4">
+            <div class="panel-wrapper p-6 sm:p-12 relative text-center animate-fade">
+                <!-- EFFET FUMÉE VERTE -->
+                <div class="absolute bottom-0 left-0 w-full h-3/4 bg-gradient-to-t from-lime-50/90 via-lime-50/30 to-transparent"></div>
+                <div class="absolute -bottom-24 -left-16 w-80 h-80 bg-lime-300/40 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-20 -right-16 w-96 h-96 bg-green-300/30 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[120%] h-48 bg-lime-400/20 rounded-[100%] blur-3xl"></div>
+                
+                <div class="flex-grow flex flex-col items-center justify-center w-full z-10">
+                    <!-- LOGO -->
+                    <div class="mb-6 sm:mb-12 w-full max-w-[240px] sm:max-w-[300px]">
+                        <img src="image_1dd119.png" alt="Logo Yenkumu Lutu" class="h-14 sm:h-24 w-auto mx-auto object-contain" 
+                             onerror="this.style.display='none'; document.getElementById('fallback-logo-1').style.display='block';">
+                        
+                        <div id="fallback-logo-1" style="display: none;" class="w-full">
+                            <svg width="100%" viewBox="0 0 340 100" class="mx-auto">
+                                <path d="M 35 75 Q 15 55 20 35 Q 35 40 40 60 Z" fill="#84cc16"/>
+                                <path d="M 45 65 Q 35 30 50 15 Q 65 35 50 65 Z" fill="#84cc16"/>
+                                <path d="M 50 75 Q 65 45 95 35 Q 195 10 325 10 Q 195 15 105 40 Q 75 50 55 75 Z" fill="#84cc16"/>
+                                <text x="70" y="75" font-family="'Inter', sans-serif" font-weight="800" font-size="28" fill="#1e3a8a" letter-spacing="1">YENKUMU LUTU</text>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- TITRE -->
+                    <div class="flex flex-col items-center mb-6 w-full px-2">
+                        <h1 class="flex flex-col items-center mb-4 w-full">
+                            <span class="text-base sm:text-2xl font-semibold text-[#364150] tracking-wide mb-1">Votre tremplin vers</span>
+                            <span class="text-[1.5rem] sm:text-[2.5rem] font-bold text-[#005eb8] tracking-tight leading-none whitespace-nowrap">l'emploi durable</span>
+                        </h1>
+                        <div class="w-16 sm:w-[7.5rem] h-[4px] sm:h-[5px] bg-gradient-to-r from-[#a4ce3a] via-[#0bb3b6] to-[#005eb8] rounded-full"></div>
+                    </div>
+                </div>
+
+                <!-- BAS DE PAGE -->
+                <div class="z-10 mt-auto pb-4">
+                    <p class="text-[#1e3a8a] mb-3 text-[10px] sm:text-base tracking-[0.2em] font-medium uppercase opacity-80">À Papaïchton</p>
+                    <div class="bg-gradient-to-r from-[#84cc16] to-lime-500 text-white px-4 sm:px-8 py-2.5 sm:py-3 rounded-full text-[9px] sm:text-xs font-bold tracking-[0.1em] shadow-lg border border-lime-400/50">
+                        ATELIER CHANTIER D'INSERTION
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PANNEAU 2 : PRÉSENTATION -->
+        <div class="w-screen h-screen flex items-center justify-center p-2 sm:p-4">
+            <div class="panel-wrapper p-6 sm:p-12 bg-[#f8fafc] justify-center gap-4 sm:gap-10">
+                <div class="text-left px-2">
+                    <h2 class="text-[#1e3a8a] font-extrabold text-xl sm:text-3xl leading-tight">Accompagner vers</h2>
+                    <h2 class="text-[#84cc16] font-extrabold text-xl sm:text-3xl">l'insertion à Papaïchton</h2>
+                </div>
+                
+                <div class="space-y-3 sm:space-y-6 px-2">
+                    <p class="text-[11px] sm:text-sm text-gray-700 leading-relaxed">
+                        Yenkumu-Lutu est une structure d'insertion par l'activité économique (SIAE) implantée à Papaichton.
+                    </p>
+                    <p class="text-[11px] sm:text-sm text-gray-700 leading-relaxed">
+                        Acteur de proximité, nous accompagnons les habitants vers une insertion professionnelle durable par des activités utiles.
+                    </p>
+                </div>
+
+                <div class="bg-blue-50 rounded-2xl p-4 sm:p-5 border border-blue-100 mx-2 shadow-sm">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-xl">💡</span>
+                        <h3 class="text-[#1e3a8a] font-bold text-base sm:text-lg">Philosophie</h3>
+                    </div>
+                    <p class="text-[10px] sm:text-xs text-gray-600 leading-relaxed">
+                        Répondre aux besoins de la population en valorisant les ressources locales et recréer du lien social.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PANNEAU 3 : PÔLES D'ACTIVITÉS -->
+        <div class="w-screen h-screen flex items-center justify-center p-2 sm:p-4">
+            <div class="panel-wrapper p-6 sm:p-10 bg-white">
+                <div class="mb-4 sm:mb-6 px-2">
+                    <h2 class="text-[#1e3a8a] font-extrabold text-xl sm:text-3xl mb-1 leading-tight text-center sm:text-left">Nos Pôles d'Activités</h2>
+                    <p class="text-[10px] sm:text-xs text-gray-500 text-center sm:text-left">Apprendre et progresser par des missions concrètes.</p>
+                </div>
+                
+                <div class="space-y-2 sm:space-y-4 flex-grow flex flex-col justify-center px-2">
+                    <div class="bg-gray-50 p-3 sm:p-4 rounded-xl border border-gray-100 flex items-center gap-3">
+                        <span class="text-xl sm:text-3xl">🪵</span>
+                        <div>
+                            <h4 class="text-[#1e3a8a] font-bold text-[11px] sm:text-sm">Filière Bois</h4>
+                            <p class="text-[9px] sm:text-[11px] text-gray-500 leading-tight">Abattage, sciage, menuiserie.</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-3 sm:p-4 rounded-xl border border-gray-100 flex items-center gap-3">
+                        <span class="text-xl sm:text-3xl text-[#84cc16]">🌿</span>
+                        <div>
+                            <h4 class="text-[#84cc16] font-bold text-[11px] sm:text-sm">Espaces Verts</h4>
+                            <p class="text-[9px] sm:text-[11px] text-gray-500 leading-tight">Entretien paysager public.</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-3 sm:p-4 rounded-xl border border-gray-100 flex items-center gap-3">
+                        <span class="text-xl sm:text-3xl">🌱</span>
+                        <div>
+                            <h4 class="text-[#1e3a8a] font-bold text-[11px] sm:text-sm">Pépinière & Compost</h4>
+                            <p class="text-[9px] sm:text-[11px] text-gray-500 leading-tight">Agriculture et éco-responsabilité.</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-3 sm:p-4 rounded-xl border border-gray-100 flex items-center gap-3">
+                        <span class="text-xl sm:text-3xl text-[#84cc16]">🏗️</span>
+                        <div>
+                            <h4 class="text-[#84cc16] font-bold text-[11px] sm:text-sm">Bâtiment (BTP)</h4>
+                            <p class="text-[9px] sm:text-[11px] text-gray-500 leading-tight">Chantiers éco-responsables.</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-3 sm:p-4 rounded-xl border border-gray-100 flex items-center gap-3">
+                        <span class="text-xl sm:text-3xl">📁</span>
+                        <div>
+                            <h4 class="text-[#1e3a8a] font-bold text-[11px] sm:text-sm">Administratif</h4>
+                            <p class="text-[9px] sm:text-[11px] text-gray-500 leading-tight">Support et accueil du public.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PANNEAU 4 : ACCOMPAGNEMENT -->
+        <div class="w-screen h-screen flex items-center justify-center p-2 sm:p-4">
+            <div class="panel-wrapper p-6 sm:p-12 bg-[#f8fafc] justify-between">
+                <div class="px-2">
+                    <h2 class="text-[#1e3a8a] font-extrabold text-xl sm:text-3xl mb-1 leading-tight">Un soutien humain</h2>
+                    <h2 class="text-blue-500 font-extrabold text-xl sm:text-3xl mb-4 leading-tight">et personnalisé</h2>
+                    <p class="text-[10px] sm:text-xs text-gray-700 font-medium">Double accompagnement (CDDI) pour votre réussite :</p>
+                </div>
+
+                <div class="space-y-4 sm:space-y-6 flex-grow flex flex-col justify-center px-2">
+                    <div class="bg-white p-4 sm:p-6 rounded-2xl border-l-4 sm:border-l-8 border-[#84cc16] shadow-sm">
+                        <h3 class="font-extrabold text-[#1e3a8a] text-xs sm:text-lg mb-1">1. Terrain (Les ETI)</h3>
+                        <p class="text-[9px] sm:text-xs text-gray-500 mb-2 leading-tight">Encadrement technique et transmission de savoir-faire.</p>
+                        <p class="text-[8px] sm:text-[10px] font-bold text-[#84cc16]">➡️ COMPÉTENCES & SAVOIR-ÊTRE</p>
+                    </div>
+                    <div class="bg-white p-4 sm:p-6 rounded-2xl border-l-4 sm:border-l-8 border-blue-500 shadow-sm">
+                        <h3 class="font-extrabold text-[#1e3a8a] text-xs sm:text-lg mb-1">2. Projet de vie (Les ASP)</h3>
+                        <p class="text-[9px] sm:text-xs text-gray-500 mb-2 leading-tight">Levée des freins sociaux (logement, mobilité...).</p>
+                        <p class="text-[8px] sm:text-[10px] font-bold text-blue-500">➡️ FORMATIONS & EMPLOI DURABLE</p>
+                    </div>
+                </div>
+
+                <!-- BLOC DYNAMIQUE "EN SAVOIR PLUS" (Bas de la section Accompagnement) -->
+                <div class="bg-[#1e3a8a] p-4 sm:p-6 rounded-2xl text-center shadow-lg mx-2 mb-2">
+                    <p class="text-white font-bold text-[10px] sm:text-sm mb-3 uppercase tracking-wider">EN SAVOIR PLUS ?</p>
+                    <!-- Ce bouton fait basculer directement sur le panneau suivant (Contacts) -->
+                    <button onclick="go(4)" class="btn-dynamic bg-[#84cc16] hover:bg-lime-600 transition-all duration-300 text-white px-8 py-3 rounded-full font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-md">
+                        CONTACTEZ-NOUS
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PANNEAU 5 : CONTACTS -->
+        <div class="w-screen h-screen flex items-center justify-center p-2 sm:p-4">
+            <div class="panel-wrapper p-6 sm:p-12 bg-[#f8fafc] justify-between">
+                <div class="px-2">
+                    <h2 class="text-[#1e3a8a] font-extrabold text-xl sm:text-3xl mb-4 sm:mb-8 text-center sm:text-left">Pourquoi nous rejoindre ?</h2>
+                    <div class="bg-white rounded-2xl border border-gray-100 p-4 sm:p-6 space-y-3 sm:space-y-6 shadow-sm">
+                        <div class="flex items-center gap-3"><span class="text-xl">🚀</span><p class="text-[10px] sm:text-sm font-bold text-[#1e3a8a]">Reprendre une activité</p></div>
+                        <div class="flex items-center gap-3"><span class="text-xl">📈</span><p class="text-[10px] sm:text-sm font-bold text-gray-600">Compétences</p></div>
+                        <div class="flex items-center gap-3"><span class="text-xl">🌱</span><p class="text-[10px] sm:text-sm font-bold text-gray-600">Avenir</p></div>
+                        <div class="flex items-center gap-3"><span class="text-xl">🤝</span><p class="text-[10px] sm:text-sm font-bold text-gray-600">Cadre solidaire</p></div>
+                    </div>
+                </div>
+
+                <div class="space-y-3 sm:space-y-5 border-t border-gray-200 pt-4 sm:pt-8 px-2">
+                    <h3 class="text-blue-500 font-extrabold text-lg sm:text-2xl">Contacts</h3>
+                    <div class="flex items-start gap-3"><span class="text-lime-600 text-lg">📍</span><p class="text-[10px] sm:text-sm font-bold text-gray-800 leading-tight">Papaïchton, Guyane 97316</p></div>
+                    <div class="flex items-center gap-3"><span class="text-red-500 text-lg">📞</span><p class="text-[11px] sm:text-base font-extrabold text-gray-800 tracking-wide">06 94 03 59 26</p></div>
+                    <div class="flex items-center gap-3"><span class="text-blue-400 text-lg">✉️</span><p class="text-[9px] sm:text-xs font-bold text-[#1e3a8a] break-all">secretariat.yenkumu.lutu@gmail.com</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PANNEAU 6 : ENGAGEMENT -->
+        <div class="w-screen h-screen flex items-center justify-center p-2 sm:p-4">
+            <div class="panel-wrapper p-6 sm:p-12 bg-[#1e3a8a] justify-between relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-48 h-48 bg-lime-400/10 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-0 left-0 w-32 h-32 bg-blue-400/20 rounded-full blur-2xl"></div>
+                
+                <div class="z-10 px-2">
+                    <h2 class="text-white font-extrabold text-xl sm:text-3xl mb-2">Notre Engagement</h2>
+                    <div class="w-12 sm:w-16 h-1 sm:h-1.5 bg-lime-400 rounded-full mb-6 sm:mb-8"></div>
+                    
+                    <p class="text-blue-100 text-[10px] sm:text-sm mb-6 leading-relaxed font-medium">
+                        Yenkumu-Lutu s'inscrit dans une dynamique de développement local en Guyane.
+                    </p>
+
+                    <div class="space-y-4 sm:space-y-8">
+                        <div class="flex items-start gap-3">
+                            <span class="text-lime-400 text-lg sm:text-xl">📍</span>
+                            <div>
+                                <h4 class="text-white font-bold text-[11px] sm:text-base mb-0.5">Besoins locaux</h4>
+                                <p class="text-blue-200 text-[9px] sm:text-xs leading-tight">Répondre aux besoins des habitants.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-lime-400 text-lg sm:text-xl">✔️</span>
+                            <div>
+                                <h4 class="text-white font-bold text-[11px] sm:text-base mb-0.5">Ressources</h4>
+                                <p class="text-blue-200 text-[9px] sm:text-xs leading-tight">Valoriser les richesses du Maroni.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-lime-400 text-lg sm:text-xl">⚡</span>
+                            <div>
+                                <h4 class="text-white font-bold text-[11px] sm:text-base mb-0.5">Dynamisme</h4>
+                                <p class="text-blue-200 text-[9px] sm:text-xs leading-tight">Soutenir l'Économie solidaire.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-[#112244] p-4 sm:p-8 rounded-2xl text-center z-10 border border-white/5 shadow-2xl mx-2 mb-2">
+                    <span class="text-2xl sm:text-3xl block mb-2">🤝</span>
+                    <p class="text-white text-[8px] sm:text-[11px] font-bold tracking-[0.2em] uppercase opacity-90 leading-tight">Économie Sociale<br>et Solidaire</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation -->
+    <div class="fixed bottom-4 sm:bottom-10 left-1/2 -translate-x-1/2 flex gap-3 sm:gap-4 px-5 sm:px-6 py-3 sm:py-4 bg-black/40 backdrop-blur-md rounded-full border border-white/10 z-50">
+        <button onclick="go(0)" class="dot w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-white/40 active transition-all duration-300"></button>
+        <button onclick="go(1)" class="dot w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-white/40 transition-all duration-300"></button>
+        <button onclick="go(2)" class="dot w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-white/40 transition-all duration-300"></button>
+        <button onclick="go(3)" class="dot w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-white/40 transition-all duration-300"></button>
+        <button onclick="go(4)" class="dot w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-white/40 transition-all duration-300"></button>
+        <button onclick="go(5)" class="dot w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-white/40 transition-all duration-300"></button>
+    </div>
+
+    <script>
+        let curr = 0;
+        const slider = document.getElementById('slider');
+        const dots = document.querySelectorAll('.dot');
+        const totalPanels = 6;
+        
+        function go(idx) {
+            curr = Math.max(0, Math.min(idx, totalPanels - 1));
+            slider.style.transform = `translateX(-${curr * (100 / totalPanels)}%)`;
+            dots.forEach((d, i) => {
+                d.classList.toggle('active', i === curr);
+                d.classList.toggle('bg-white/40', i !== curr);
+            });
+        }
+        
+        // Navigation Tactile
+        let startX = 0;
+        let isDragging = false;
+        
+        document.addEventListener('touchstart', e => {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+        }, {passive: true});
+        
+        document.addEventListener('touchend', e => {
+            if (!isDragging) return;
+            const endX = e.changedTouches[0].clientX;
+            const diff = startX - endX;
+            if (Math.abs(diff) > 40) { 
+                if (diff > 0) go(curr + 1);
+                else go(curr - 1);
+            }
+            isDragging = false;
+        }, {passive: true});
+        
+        // Initialisation
+        window.addEventListener('load', () => go(0));
+    </script>
+</body>
+</html>
